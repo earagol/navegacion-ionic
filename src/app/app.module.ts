@@ -4,6 +4,8 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
+import { HttpModule } from '@angular/http';
+
 import { MyApp } from './app.component';
 
 
@@ -13,8 +15,10 @@ import { PrincipalPage,
          ModalPage,
          Pagina2Page,
          Pagina3Page,
-         TabsPage
+         TabsPage,
+         LoginPage
        } from '../pages/index.paginas';
+import { LoginProvider } from '../providers/login/login';
 
 
 
@@ -27,13 +31,15 @@ import { PrincipalPage,
     ModalPage,
     Pagina2Page,
     Pagina3Page,
-    TabsPage
+    TabsPage,
+    LoginPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp, {
       backButtonText: 'Atras'
-    })
+    }),
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -44,12 +50,14 @@ import { PrincipalPage,
     ModalPage,
     Pagina2Page,
     Pagina3Page,
-    TabsPage
+    TabsPage,
+    LoginPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    LoginProvider
   ]
 })
 export class AppModule {}

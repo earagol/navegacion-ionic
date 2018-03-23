@@ -3,7 +3,7 @@ import { Platform, MenuController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { TabsPage, AjustesPage } from '../pages/index.paginas';
+import { TabsPage, AjustesPage, LoginPage } from '../pages/index.paginas';
 @Component({
   templateUrl: 'app.html'
 })
@@ -12,7 +12,8 @@ export class MyApp {
   tabs = TabsPage;
   ajustes = AjustesPage;
 
-  rootPage:any = TabsPage;
+  // rootPage:any = TabsPage;
+  rootPage:any = LoginPage;
 
   constructor(platform: Platform,
               statusBar: StatusBar,
