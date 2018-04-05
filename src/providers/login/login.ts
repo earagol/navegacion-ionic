@@ -1,9 +1,10 @@
 // import { HttpClient } from '@angular/common/http';
 // import { HTTP } from '@ionic-native/http';
 
-import { Http, Headers } from '@angular/http';
+import { Http, Headers, RequestOptions } from '@angular/http';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
+// import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 
 /*
   Generated class for the LoginProvider provider.
@@ -17,7 +18,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class LoginProvider {
 
-  private apiUrl = 'http://localhost/test_api/api2/api/';  // URL to web api
+  private apiUrl = 'http://localhost/test_api/api/api/';  // URL to web api
 
   constructor(public http: Http) {
     console.log('Hello LoginProvider Provider');
@@ -39,6 +40,27 @@ export class LoginProvider {
                     return resp.json();
                   }
                 );
+  }
+
+  index(){
+    console.log('sisisiss',localStorage.getItem("token"));
+    console.log(this.apiUrl+'users');
+
+    let headers = new Headers();
+    headers.append('Accept', 'application/json');
+    headers.append('Authorization', 'Bearer ' + localStorage.getItem("token"));
+
+    let options = new RequestOptions({ headers: headers });
+    // return this.http.get(this.apiUrl+'users',options);
+
+
+    return this.http.get(this.apiUrl+'users',options)
+                  .map((resp: any) => {
+                    console.log(resp);
+                    return resp.json();
+                  }
+                );
+
   }
 
 }

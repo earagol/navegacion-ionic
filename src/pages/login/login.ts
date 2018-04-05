@@ -43,25 +43,24 @@ export class LoginPage {
       content: "Please wait..."
     });
 
-    loader.present().then(()=>{
+    // loader.present().then(()=>{});
+    loader.present();
 
-      this.loginProv.login(this.forma.value).subscribe(res => {
+    this.loginProv.login(this.forma.value).subscribe(res => {
 
-          if(res.success){
-            console.log(res);
-            localStorage.setItem("token", res.data.token);
-            this.navCtrl.push(TabsPage);
-          }else{
-            let toast = this.toastCtrl.create({
-              message: res.message,
-              duration: 4000,
-              position: 'middle'
-            });
-            toast.present();
-          }
-          loader.dismiss();
-
-      });
+        if(res.success){
+          console.log(res);
+          localStorage.setItem("token", res.data.token);
+          this.navCtrl.push(TabsPage);
+        }else{
+          let toast = this.toastCtrl.create({
+            message: res.message,
+            duration: 4000,
+            position: 'middle'
+          });
+          toast.present();
+        }
+        loader.dismiss();
 
     });
 
